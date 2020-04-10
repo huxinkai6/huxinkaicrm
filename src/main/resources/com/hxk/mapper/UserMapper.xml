@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxk.mapper.UserMapper">
+	    <!-- 查询所有 -->
+	<select id="getStus1" resultType="user">
+	select * from users limit #{page},#{limit}
+	</select>
+	<!-- 判断用户是否存在  getUser -->
+	<select id="getUser" resultType="user">
+	select * from users where LoginName = #{name} and Password = #{pass}
+	</select>
+	<!-- 查询所有条数 -->
+	<select id="getCount" resultType="int">
+	select count(*) from users
+	</select>
+	<!-- 添加 -->
+	<insert id="addUser" parameterType="user">
+		insert into users values(#{Id},#{LoginName},#{Password},#{IsLockout},#{LockTime},#{PsdWrongTime},#{LastLoginTime},#{ProtectEMail},#{protectMTel},#{CreateTime});
+	</insert>
+	
+     <!-- 修改用户信息 -->
+	<update id="editUser" parameterType="user">
+		update users set LoginName = #{LoginName},Password = #{Password},IsLockout =#{IsLockout},LockTime =#{LockTime},PsdWrongTime =#{PsdWrongTime},LastLoginTime =#{LastLoginTime},ProtectEMail =#{ProtectEMail},protectMTel =#{protectMTel},CreateTime =#{CreateTime} where Id =#{Id}
+	</update>
+	<!-- 删除 -->
+	<delete id="deleteUser">
+		delete from users where Id = #{id}
+	</delete>
+
+	<!-- 锁定 -->
+	<update id="lockUser" parameterType="Map">
+		update users set IsLockout = #{IsLockout},LockTime = #{LockTime} where Id = #{Id}
+	</update>
+	<!-- 解锁 -->
+	<update id="unLockUser" parameterType="Map">
+		update users set IsLockout = #{IsLockout},LockTime = #{LockTime} where Id = #{Id}
+	</update>
+<!-- //通过用户的id获取角色findUsersRolesById -->
+<select id="findUsersRolesById" resultType="com.hxk.entity.Roles">
+SELECT * FROM roles WHERE id in (SELECT RoleId FROM  userroles WHERE UserId = #{uid})
+</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

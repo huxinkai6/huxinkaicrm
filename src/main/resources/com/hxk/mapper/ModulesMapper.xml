@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxk.mapper.ModulesMapper">
+
+
+<!-- 添加 int addroles(Map<String, Object> map);-->
+<insert id="addroles">
+insert into modules(Name,ParentId,Path,Weight,Ops,Int0)values(#{name},#{parentid},#{path},#{weight},null,null)
+
+</insert>
+
+<!-- 修改updateroles -->
+<update id="updateroles" >
+   update modules
+ <set>
+     <if test="name != null and name != ''">
+        Name = #{name},
+     </if>
+      <if test="path != null and path != ''">
+        Path = #{path},
+     </if>
+      <if test="weight != null and weight != ''">
+        Weight = #{weight}
+     </if>
+   </set>
+where Id = #{parentid} 
+</update>
+
+<!-- 删除 delroles -->
+
+<delete id="delroles">
+delete from modules where Id = #{id}
+
+</delete>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

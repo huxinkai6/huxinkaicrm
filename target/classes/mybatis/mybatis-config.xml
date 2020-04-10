@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- 配置 -->
+<configuration>
+	<!-- 日志配置 -->
+<!-- 	<settings>
+
+		
+		开启二级缓存 
+       <setting name="cacheEnabled" value="true"/>   
+	</settings> -->
+	<!-- 
+	<settings>
+	<setting name="logImpl" value="LOG4J" />
+	</settings> -->
+
+<typeAliases>
+		<typeAlias type="com.hxk.entity.Users" alias="user" />
+		<package name="com.hxk.entity"/>
+	</typeAliases> 
+
+	<!-- 定义很多环境,默认环境是 development -->
+
+	<!-- <mappers>
+		扫描接口对应的 XXXMapper.xml 文件	
+		<mapper resource="com/hxk/mapper/StuMapper.xml" />
+	</mappers> -->
+</configuration>
